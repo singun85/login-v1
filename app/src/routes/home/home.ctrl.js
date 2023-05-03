@@ -20,7 +20,11 @@ const process = {
         const response = user.login();
         return res.json(response);
     },
-
+    register: (req, res) => {
+        const user = new User(req.body);
+        const response = user.register();
+        return res.json(response);
+    },
 };
 module.exports ={ //중요! 각 js 파일에 모듈은 exports 해줘야 다른 경로에서 사용가능!
     output,

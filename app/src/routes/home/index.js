@@ -11,6 +11,6 @@ router.get("/login", ctrl.output.login);//home.ctrl.js 에 있는 login 을 불�
 router.get("/register", ctrl.output.register);
 
 router.post("/login", ctrl.process.login);
-
+router.post("/register", ctrl.process.register);
 
 module.exports = router; //중요! 각 js 파일에 모듈은 exports 해줘야 다른 경로에서 사용가능!
