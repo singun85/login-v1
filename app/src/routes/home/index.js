@@ -8,6 +8,8 @@ const ctrl = require("./home.ctrl"); //home.ctrl.js 의 hello,login 값을 가�
 
 router.get("/", ctrl.output.home); //home.ctrl.js 에 있는 hello 를 불러와
 router.get("/login", ctrl.output.login);//home.ctrl.js 에 있는 login 을 불러와
+router.get("/register", ctrl.output.register);
+
 router.post("/login", ctrl.process.login);
 
 
