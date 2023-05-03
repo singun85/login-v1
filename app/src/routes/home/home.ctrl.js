@@ -1,6 +1,8 @@
 "use strict";
 
+const { response } = require("express");
 
+const UserStorage = require("../../models/UserStorage");
 
 const output = {
     home: (req, res) => {
@@ -11,29 +13,24 @@ const output = {
     },
 };
 
-const users = {
-    id: ["cokaking", "singun", "pppip"],
-    psword: ["1234", "12345", "123456"],
-};
-
 const process = {
     login: (req, res) => {
         const id = req.body.id,
             psword = req.body.psword;
-        
+
+        const users = UserStorage.getUsers("id", "psword");
+
+        const response = {};
         if (users.id.includes(id)) {
             const idx = users.id.indexOf(id);
             if (users.psword[idx] === psword) {
-                return res.json({
-                    success: true,
-                });
+                response.success = true;
+                return res.json(response);
             }
         }
-
-        return res.json({
-            success: false,
-            msg:"로그인에 실패하였습니다.",
-        });
+        response.success = false;
+        response.msg = "로그인에 실패하였습니다."
+        return res.json(response);
     },
 };
 module.exports ={ //중요! 각 js 파일에 모듈은 exports 해줘야 다른 경로에서 사용가능!
